@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+   <style>
+      *{
+            margin: 5px 20px;
+        }
+        #parent{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            justify-content: center;
+            
+        }
+        #parent>div{
+            /* align-content: center; */
+            align-items: center;
+            background-color:rgb(240, 228, 227);
+            padding: 5%;
+            border: 1px solid rgb(231, 202, 223);
+            border-radius: 10px;
+            height: 300px;
+            width: 350px;
+        }
+        img{
+            mix-blend-mode: multiply;  
+            width: 150px !important;
+            height: 150px !important;
+        }
+        h1{
+            text-align: center;
+            font-family: cursive;
+        }
+        button{
+            font-family: cursive;
+            margin-left: 87%;
+            color: rgba(236, 30, 30, 0.9) !important;
+            border-color:rgb(18, 10, 10);
+            font-size: 15px;
+            letter-spacing: 0.75px;
+        }
+        a{
+            font-size: 25px;
+        }
+   </style>
+</head>
+<body>
+    <h1>Things to Grab</h1> <br>
+    <div id="parent"></div>
+    <center><a href="addtocart.html">Grab More</a></center>
+    <script>
+        parent=document.getElementById("parent")
+        let getdata=JSON.parse(localStorage.getItem("products"))
+    newgetdata=getdata.map((val)=>{
+
+    let child=document.createElement("div")
+    let childa=document.createElement("div")
+    let childb=document.createElement("div")
+    let childc=document.createElement("div")
+    let childd=document.createElement("div")
+    let img=document.createElement("img")
+    let btn=document.createElement("button")
+       
+
+     childb.innerText=val.title
+     childc.innerText=val.category
+     childd.innerText="Price: $"+val.price
+     childd.style.fontWeight="600"
+
+     img.innerHTML=val.image
+     img.src=val.image
+     img.style.width="100px"
+     img.style.height="100px"
+
+     btn.innerHTML="remove X"
+     btn.style.color="red"
+     btn.style.marginLeft="170px"
+     btn.style.padding="5px 25px"
+     btn.style.borderRadius="5px"
+
+     btn.addEventListener("click",function(){
+        //  console.log(val)
+        //  cart.push(val)
+        // parent.removeChild()
+        child.style.display="none"
+     })
+
+
+     child.append(childb,childc,childd,img,btn)
+     parent.append(child)
+     })
+     function fun(){
+     window.open("cart.html","_self")
+    }
+
+     
+    </script>
+</body>
+</html>
